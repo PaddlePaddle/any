@@ -180,11 +180,11 @@ private: // Storage and Virtual Method Table
         // such as destroy() and/or move().
 
         /// The type of the object this vtable is for.
-        const std::type_info& (*type)() noexcept;
+        const std::type_info& (*type)();
 
         /// Destroys the object in the union.
         /// The state of the union after this call is unspecified, caller must ensure not to use src anymore.
-        void(*destroy)(storage_union&) noexcept;
+        void(*destroy)(storage_union&);
 
         /// Copies the **inner** content of the src union into the yet unitialized dest union.
         /// As such, both inner objects will have the same state, but on separate memory locations.
@@ -192,10 +192,10 @@ private: // Storage and Virtual Method Table
 
         /// Moves the storage from src to the yet unitialized dest union.
         /// The state of src after this call is unspecified, caller must ensure not to use src anymore.
-        void(*move)(storage_union& src, storage_union& dest) noexcept;
+        void(*move)(storage_union& src, storage_union& dest);
 
         /// Exchanges the storage between lhs and rhs.
-        void(*swap)(storage_union& lhs, storage_union& rhs) noexcept;
+        void(*swap)(storage_union& lhs, storage_union& rhs);
     };
 
     /// VTable for dynamically allocated storage.
